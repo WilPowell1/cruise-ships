@@ -39,7 +39,7 @@ describe('Ship', () => {
         });
 
         it('has a starting port', () => {
-            expect(ship.currentPort).toBe(port);
+            expect(ship.currentPort).toBe(dover);
         });
 
         it('can set sail', () => {
@@ -47,7 +47,7 @@ describe('Ship', () => {
             ship.setSail();
 
             expect(ship.currentPort).toBeFalsy();
-            expect(dover.removeShips).toHaveBeenCalled(ship);
+            expect(dover.removeShip).toHaveBeenCalledWith(ship);
         });
 
         it('can dock at a different port', () => {
@@ -56,7 +56,7 @@ describe('Ship', () => {
             ship.dock();
 
             expect(ship.currentPort).toBe(calais);
-            expect(calais.ships).toContain(ship);
+            expect(calais.addShip).toHaveBeenCalledWith(ship);
         });
 
         it('can\'t sail further than its itinerary', () => {
@@ -68,7 +68,7 @@ describe('Ship', () => {
         });
 
         it('gets added to port on instantiation', () => {
-            expect(port.addShip).toHaveBeenCalledWith(ship);
+            expect(dover.addShip).toHaveBeenCalledWith(ship);
         })
     })
 });
